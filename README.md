@@ -90,3 +90,8 @@ sudo apt install docker-compose-v2 -y
 docker compose up -d
 ```
 #
+- Access it on port 8080
+```bash
+  http://<public-ip>:8080
+```
+#
