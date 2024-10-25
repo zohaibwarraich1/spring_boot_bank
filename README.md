@@ -5,12 +5,13 @@
 - AWS Account
 - AWS Ubuntu EC2 instance (t2.medium)
 - Install Docker
+- Install docker compose
 #
 ### DEPLOYMENT:
 | Deployments    | Paths |
 | -------- | ------- |
 | Deployment using Docker and Networking | <a href="#Docker">Click me </a>     |
-| Deployment using Docker Compose | <a href="#">Click me </a>     |
+| Deployment using Docker Compose | <a href="#dockercompose">Click me </a>     |
 | Deployment using Jenkins on EKS | <a href="#">Click me </a>     |
 | Deployment using Argocd on EKS| <a href="#">Click me </a>     |
 
@@ -21,6 +22,23 @@
   ```bash
   git clone -b DevOps https://github.com/DevMadhup/Springboot-BankApp.git
   ```
+  #
+  - Install docker and provide neccessary permission
+  ```bash
+  sudo apt update -y
+
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+  sudo apt update -y
+
+  apt-cache policy docker-ce -y
+
+  sudo apt install docker-ce -y
+
+  sudo usermod -aG docker $USER && newgrp docker
+  ``` 
   #
   - Move to the cloned repository
   ```bash
@@ -59,3 +77,16 @@
   http://<public-ip>:8080
   ```
   ### Congratulations, you have deployed the application using Docker 
+  #
+- **<p id="dockercompose">Deployment using Docker compose</p>**
+- Install docker compose
+```bash
+sudo apt update
+sudo apt install docker-compose-v2 -y
+```
+#
+- Run docker-compose file present in the root directory of a project
+```bash
+docker compose up -d
+```
+#
