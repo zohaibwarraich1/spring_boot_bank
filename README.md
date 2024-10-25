@@ -9,7 +9,7 @@
 ### DEPLOYMENT:
 | Deployments    | Paths |
 | -------- | ------- |
-| Deployment using Docker | <a href="#Docker">Click me </a>     |
+| Deployment using Docker and Networking | <a href="#Docker">Click me </a>     |
 | Deployment using Docker Compose | <a href="#">Click me </a>     |
 | Deployment using Jenkins on EKS | <a href="#">Click me </a>     |
 | Deployment using Argocd on EKS| <a href="#">Click me </a>     |
