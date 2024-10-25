@@ -94,4 +94,6 @@ docker compose up -d
 ```bash
   http://<public-ip>:8080
 ```
+> [!Important]
+> If you face issues with exiting docker container while running docker compose, run ``` docker compose down``` and then ``` docker compose up -d ```.
 #
