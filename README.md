@@ -6,9 +6,6 @@
 - AWS EC2 instance (t2.medium)
 - Install Docker
 #
-<mark>PROJECT FLOW: </mark>
-<img src="" />
-#
 ### DEPLOYMENT:
 | Deployments    | Paths |
 | -------- | ------- |
