@@ -3,7 +3,7 @@
 
 ### PRE-REQUISITES FOR THIS PROJECT:
 - AWS Account
-- AWS EC2 instance (t2.medium)
+- AWS Ubuntu EC2 instance (t2.medium)
 - Install Docker
 #
 ### DEPLOYMENT:
