@@ -15,6 +15,7 @@
         - Agents are used for distribute the builds in parallel execution
         ![Agent](images/agent.png)
 
+        - Install Docker and docker-compose:V2 on worker node and add the user who is executing the Jenkins job into the docker group. because we are going to deploy application in worker node itself.
 
     - Configure Shared Library
         - Configure the task effectively in centralized manner.
