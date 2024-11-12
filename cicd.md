@@ -6,10 +6,12 @@
     ![Login diagram](images/flow.png)
 #### Creating CICD pipeline 
 
-1. #### Install Jenkins and and acess on port 8080. Login and install Suggested Plugins.
+1. #### Install Jenkins and access on port 8080
     ```bash 
     http://<Instance_IP>:8080
     ```
+    Login and install Suggested Plugins.
+
 2. #### Jenkins Configuration.
     - SetUp Agent
         - Agents are used for distribute the builds in parallel execution
@@ -30,7 +32,8 @@
         
         ![Shared-library](images/credentials.png)
 
-3. #### Create a Pipeline, execute Job and Cofigure Weebhook..
+3. #### Create a Pipeline, Execute Job and Configure Webhook
+ 
     - Configure Pipeline.
         - Configure job to get pipeline from SCM.
         ![pipeline](images/pipeline.png)

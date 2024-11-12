@@ -10,13 +10,13 @@
    sudo apt update             
    ```
 -  Start nginx 
-   ```bahs
+   ```bash
    sudo systemctl start nginx
    ```
 
 - enable nginx 
     ```bash
-    sudo systemctl eanble nginx
+    sudo systemctl enable nginx
     ```
 
 - Create a new Nginx server block configuration file for our bank-app application
@@ -61,7 +61,13 @@
     certbot --version
     ```
     ```bash
-    certbot --nginx -d bank.joakim.online.com
+    certbot --nginx -d bank.joakim.online
     ```
+- Verify SSL setup:
+    1. Check SSL certificate: `curl -vI https://bank.joakim.online`
+
+    2. Verify automatic renewal: `sudo certbot renew --dry-run`
+
+    3. Test HTTPS redirect: `curl -I http://bank.joakim.online`
 
 
