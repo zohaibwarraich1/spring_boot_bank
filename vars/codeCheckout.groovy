@@ -1,4 +1,4 @@
-def call(String branch, String url) {
+def call(String branch, String url, String credId) {
     // Validate branch name format
     if (!branch.matches('^[\\w.-]+$')) {
         error("Invalid branch name format")
@@ -9,12 +9,28 @@ def call(String branch, String url) {
         error("Invalid git URL format")
     }
     
-    try {
-        git(
-            branch: branch,
-            url: url
-        )
-    } catch (Exception e) {
-        error("Failed to checkout code: ${e.message}")
-    }
+     try {
+        timeout(time: 5, unit: 'MINUTES') {
+            def gitConfig = [
+                branch: branch,
+                url: url,
+                changelog: true,
+                poll: false
+            ]
+            
+            if (credentialsId) {
+                gitConfig.credentialsId = credentialsId
+            }
+            
+            git(gitConfig)
+        }
+     } catch (Exception e) {
+        def errorMsg = "Git checkout failed:\n" +
+                      "Branch: ${branch}\n" +
+                      "URL: ${url}\n" +
+                      "Error: ${e.message}"
+        error(errorMsg)
+     }
+
+    
 }
