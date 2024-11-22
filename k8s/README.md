@@ -17,7 +17,7 @@ Deploy the NGINX Ingress Controller:
 
 ```bash
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 ```
 Verify that the Ingress Controller pods are running:
 
