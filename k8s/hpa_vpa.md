@@ -36,7 +36,7 @@ kubectl apply -f hpa.yaml
     ```bash
     kubectl run -i --tty load-generator --image=busybox /bin/sh
 
-    while true; do wget -q -O- http://bankapp-service.default.svc.cluster.local; done
+     while true; do wget -q -O- http://bankapp-service.bankapp-namespace.svc.cluster.local; done
     ```
 
 #### When utilization of resources exceeds the defined value, hpa will create new pods.
@@ -69,7 +69,7 @@ Generate load to application
 ```bash
 kubectl run -i --tty load-generator --image=busybox /bin/sh
 
-while true; do wget -q -O- http://bankapp-service.default.svc.cluster.local; done
+while true; do wget -q -O- http://bankapp-service.bankapp-namespace.svc.cluster.local; done
 ```
 
 Check resource utilization.
