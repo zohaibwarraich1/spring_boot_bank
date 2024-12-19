@@ -35,9 +35,9 @@ pipeline {
         stage("Update: Kubernetes manifest"){
             steps{
                 script{
-                    dir('k8s'){
+                    dir('kubernetes'){
                         sh """
-                            sed -i -e s/springboot-bankapp.*/springboot-bankapp:${params.BACKEND_DOCKER_TAG}/g deployment.yml
+                            sed -i -e 's|madhupdevops/bankapp:.*|madhupdevops/bankapp:${params.DOCKER_TAG}|g' bankapp-deployment.yaml
                         """
                     }
                 }
