@@ -224,3 +224,22 @@ kubectl get all -n bankapp-namespace
   ```
 
 ---
+
+## **8. Add Autoscaling**
+
+### **Install the Metrics Server**
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+### **Get the Top Nodes and Pods**
+```bash
+  kubectl top nodes
+  kubectl top pods -n bankapp-namespace
+```
+### **Apply HPA**
+```bash
+  kubectl apply -f bankapp-hpa.yml
+```
+---
+
