@@ -5,10 +5,17 @@ metadata:
   namespace: bankapp-namespace
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTPS
+    cert-manager.io/cluster-issuer: letsencrypt-prod  # Use Let's Encrypt
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - junoon.trainwithshubham.com
+    secretName: bankapp-tls-secret  # Cert-Manager will manage this
   rules:
-  - host: "junoon.trainwithshubham.com"
+  - host: junoon.trainwithshubham.com
     http:
       paths:
       - path: /
@@ -18,3 +25,4 @@ spec:
             name: bankapp-service
             port:
               number: 8080
+

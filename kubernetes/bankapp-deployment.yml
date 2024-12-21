@@ -6,7 +6,7 @@ metadata:
   name: bankapp-deploy
   namespace: bankapp-namespace
 spec:
-  replicas: 2
+  replicas: 2  # Keep replicas >= 2 for high availability
   selector:
     matchLabels:
       app: bankapp-deploy
@@ -16,8 +16,8 @@ spec:
         app: bankapp-deploy
     spec:
       containers:
-      - image: madhupdevops/bankapp:v8
-        name: bankapp
+      - name: bankapp
+        image: trainwithshubham/bankapp-eks:v1
         ports:
         - containerPort: 8080
         env:
@@ -41,3 +41,23 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: SPRING_DATASOURCE_PASSWORD
+        readinessProbe:
+          httpGet:
+            path: /actuator/health  # Update this based on your app's health endpoint
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /actuator/health  # Update this based on your app's health endpoint
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+
