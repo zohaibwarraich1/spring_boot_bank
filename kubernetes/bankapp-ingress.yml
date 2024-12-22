@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - junoon.trainwithshubham.com
+    - megaproject.trainwithshubham.com
     secretName: bankapp-tls-secret  # Cert-Manager will manage this
   rules:
-  - host: junoon.trainwithshubham.com
+  - host: megaproject.trainwithshubham.com
     http:
       paths:
       - path: /
