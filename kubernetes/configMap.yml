@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: bank-configmap
+  namespace: bank
+data:
+  MYSQL_DATABASE: BankDB
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-svc:3306/BankDB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+
