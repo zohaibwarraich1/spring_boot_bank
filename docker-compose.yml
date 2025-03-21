@@ -1,47 +1,35 @@
-version: "3.9"
-
 services:
-  mysql:
-    image: mysql:latest
-    container_name: "mysql"
+  bankapp:
+    build: 
+      context: .
+    container_name: bankapp
     environment:
-      - MYSQL_DATABASE=BankDB
-      - MYSQL_ROOT_PASSWORD=Test@123
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/bankappdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "Test@123"
     ports:
-      - "3306:3306"
+      - 3000:3000
     networks:
-      - demo
-    volumes:
-      -  ./mysql-data:/var/lib/mysql
-    restart: always
-    healthcheck:
-      test: ["CMD", "mysqladmin","ping","-h","localhost", "-uroot", "-pTest@123"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 120s
-
-  Bank:
-    image: bankapp:latest
-    container_name: "Bankapp"
-    environment:
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/BankDB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      - SPRING_DATASOURCE_PASSWORD=Test@123
-    ports:
-      - "8080:8080"
-    networks:
-      - demo
+      - bankapp_network
     depends_on:
       - mysql
     restart: always
-    healthcheck:
-      test: ["CMD-SHELL" ,"curl -f http://localhost:8080 || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 120s
+  
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "Test@123"
+      MYSQL_DATABASE: "bankappdb"
+    volumes:
+      - bankapp_volume:/var/lib/mysql
+    ports:
+      - 3306:3006
+    networks:
+      - bankapp_network
+    restart: always
 
+volumes:
+  bankapp_volume:
 networks:
-  demo:
-
+  bankapp_network:
